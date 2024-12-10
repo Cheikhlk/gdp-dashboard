@@ -1,19 +1,17 @@
-# :earth_americas: GDP dashboard template
+import requests
 
-A simple Streamlit app showing the GDP of different countries in the world.
+def get_weather(city, api_key):
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric&lang=fr"
+        response = requests.get(url)
+            if response.status_code == 200:
+                    data = response.json()
+                            temp = data['main']['temp']
+                                    description = data['weather'][0]['description']
+                                            print(f"La température à {city} est de {temp}°C avec {description}.")
+                                                else:
+                                                        print("Erreur lors de la récupération des données.")
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://gdp-dashboard-template.streamlit.app/)
-
-### How to run it on your own machine
-
-1. Install the requirements
-
-   ```
-   $ pip install -r requirements.txt
-   ```
-
-2. Run the app
-
-   ```
-   $ streamlit run streamlit_app.py
-   ```
+                                                        # Remplace par ta clé API
+                                                        api_key = 'votre_clé_api'
+                                                        city = 'Paris'
+                                                        get_weather(city, api_key)
